@@ -121,23 +121,19 @@ class SessionController extends Controller
     public function update(Request $request , Session $session)
     {
 
-        if (! is_dir(public_path('/Images/' . $request->Sname))) {
-            mkdir(public_path('/Images/' . $request->Sname ) , 0777);
-        }
+
         $this->validate($request, [
-            'Sname'=>'sometimes|max:200|unique:sessions,Sname,' . $session->id,
             'Simage' => 'sometimes',
         ]);
         if ($request->hasFile('Simage')) {
             $image = $request->file('Simage');
             $imageName ='Cover'. time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(1500, 2000)->save(public_path('/Images/' .$request->Sname . '/'. $imageName));
+            Image::make($image)->resize(1500, 2000)->save(public_path('/Images/' .$session->Sname . '/'. $imageName));
 
         }else {
             $imageName = $session->Simage;
         }
 
-        $session->Sname = $request->input('Sname');
         $session->category_id = $request->input('category');
         $session->Simage = $imageName;
         $session->update();

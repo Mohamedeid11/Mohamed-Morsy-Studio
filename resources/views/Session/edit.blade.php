@@ -15,11 +15,6 @@
                                     <form action="{{route('session.update' ,$session->id)}}" method="post" enctype="multipart/form-data">
                                         @csrf
                                         @method('PATCH')
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Session Name</label>
-                                            <input type="text" name="Sname" id="Sname" class="form-control" placeholder="Enter The Session Name" value="{{old('Sname') ?? $session->Sname}}">
-                                        </div>
-
                                         <label for="exampleInputPassword1"> Select The Session Category </label>
                                         <select class="form-control" name="category" id="category">
                                             @if (count($categories) > 0)
