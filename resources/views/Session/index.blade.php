@@ -52,4 +52,6 @@
         </div>
     </section>
     @include('Session.album')
+
+
 @endsection

@@ -49,7 +49,22 @@
              <form action="{{route('session.store')}}" method="post" enctype="multipart/form-data">
                  <div class="modal-body">
                      @csrf
-                     @include('Session.form')
+                     <div class="form-group">
+                         <label for="exampleInputPassword1">Session Name</label>
+                         <input type="text" name="Sname" id="Sname" class="form-control" placeholder="Enter The Session Name">
+                     </div>
+
+                     <label for="exampleInputPassword1"> Select The Session Category </label>
+                     <select class="form-control" name="category" id="category">
+                         @if (count($categories) > 0)
+                             @foreach($categories as $category)
+                                 <option id="category" name="category" value="{{$category->id}}">{{$category->name}}</option>
+                             @endforeach
+                         @endif
+                     </select>
+
+                     <label for="exampleInputPassword1">Session Cover</label>
+                     <input type="file" name="Simage" id="Simage" accept="image/*" class="form-control"/>
                  </div>
                  <div class="modal-footer">
                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
