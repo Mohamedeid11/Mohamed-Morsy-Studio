@@ -20,6 +20,7 @@
 @if ($event->image != 0)
 
 <img src="{{asset('/Images/Event/'.$event->image)}}" alt="Book-image" class=" d-block m-1" style="width: 200px ; height: 200px ">
+
 @endif
 
 <input type="file" name="image" id="image" accept="image/*" class="form-control"/>

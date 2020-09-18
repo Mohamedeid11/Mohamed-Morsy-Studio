@@ -21,19 +21,9 @@
                 <p class="text-center text-bold"> {{$session->Sname}}'s Cover</p>
                     <img class="card-img-top img-fluid" src="{{asset('/Images/' . $session->Sname . '/' . $session->Simage)}}" alt="Show More" style="width: 450px ; height: 450px ">
                 <div class="card-body">
-                    <!-- EDit Button -->
-                    <button type="button" class="btn btn-primary floeat-left"
-                            data-toggle="modal"
-                            data-target="#editC"
-                            data-sessionname='{{$session->Sname}}'
-                            data-category='{{$session->category_id}}'
-                            data-coverImage='{{$session->category_id}}'
-                            data-sessionid="{{$session->id}}">
-                        <i class="fas fa-edit"></i>  Edit
-                    </button>
-                    <!-- End of Edit Button-->
 
                     @can('delete-session')
+                    <a href="{{route('session.edit' , $session->id)}}" class="btn btn-primary"> <i class="fas fa-edit"></i> Edit</a>
                         <form action="{{route('session.destroy' , $session->id)}}" method="post" class="float-right">
                             @csrf
                             @method('DELETE')
@@ -58,7 +48,7 @@
             <h3 class="card-title text-center">Select Image</h3>
         </div>
         <div class="card-body">
-            <form id="dropzoneForm" class="dropzone" action="{{ route('Gallery.store') }}">
+            <form id="dropzoneForm" class="dropzone" action="{{ route('Gallery.store')}}">
                 @csrf
                 <input type="hidden" name="Sid" id="Sid" value="{{$session->id}}">
                 <input type="hidden" name="Sname" id="Sname" value="{{$session->Sname}}">
@@ -90,32 +80,4 @@
 
 {{--    End Of Drop Zone Area--}}
 
-
-
-{{-- Edit Session Model--}}
-    <div class="modal fade" id="editC" tabindex="-1" role="dialog" aria-labelledby="editC" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"> Edit The Cover</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{route('session.update' , $session)}}" method="post" enctype="multipart/form-data">
-                    <div class="modal-body">
-                        @method('PATCH')
-                        @csrf
-                        <input type="hidden" name="session" id="Sid" value="">
-                        @include('Session.form')
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-{{--    End Of Edit Session model--}}
 @endsection

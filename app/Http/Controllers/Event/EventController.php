@@ -101,6 +101,9 @@ class EventController extends Controller
             $imageName = $random . $image->getClientOriginalName();
             Image::make($image)->resize(1500, 2000)->save(public_path('/Images/Event/'. $imageName));
         }
+        else {
+            $imageName = $event->image;
+        }
 
         $event->name = $request->input('name');
         $event->price = $request->input('price');

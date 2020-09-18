@@ -12,7 +12,7 @@ class Session extends Model
         return $this->belongsTo('App\Category');
     }
 
-    public function Galleries() {
+    public function galleries() {
         return $this->hasMany('App\Gallery');
     }
 }

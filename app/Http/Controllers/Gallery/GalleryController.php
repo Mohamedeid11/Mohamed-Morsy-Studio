@@ -40,11 +40,34 @@ class GalleryController extends Controller
 
         $Gallery = new Gallery();
 
+        $Gallery->session_id = $request->Sid;
+
         $Gallery->image = $imageName;
 
-        $Gallery->session_id = $request->input('Sid');
-
         $Gallery->save();
+
+
+
+
+//        if (! is_dir(public_path('/Images/' . $request->Sname))) {
+//            mkdir(public_path('/Images/' . $request->Sname ) , 0777);
+//        }
+//
+//        $image = $request->file('file');
+//
+//        $random = mt_rand(1,100);
+//
+//        $imageName = time() . 'A' . $random . '.' . $image->getClientOriginalExtension();
+//
+//        Image::make($image)->resize(1500, 2000)->save(public_path('/Images/' . $request->Sname . '/' . $imageName));
+//
+//        $Gallery = new Gallery();
+//
+//        $Gallery->image = $imageName;
+//
+//        $Gallery->session_id = $request->input('Sid');
+//
+//        $Gallery->save();
 
 
         return back()->with('success' , 'The Gallery Has Uploaded Successfully !!');

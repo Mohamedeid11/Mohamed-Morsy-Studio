@@ -55,7 +55,7 @@ class PageController extends Controller
      */
     public function show(Session $session)
     {
-        $images = Gallery::all();
+        $images = $session->galleries()->get();
 
         return view('Home.Gallery',compact('session' , 'images'));
     }

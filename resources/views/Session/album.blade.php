@@ -12,6 +12,7 @@
                                 </a>
                                 <div class="card-body">
                                     @can('delete-session')
+                                    <a href="{{route('session.edit' , $session->id)}}" class="btn btn-primary"> <i class="fas fa-edit"></i> Edit</a>
                                         <form action="{{route('session.destroy' , $session->id)}}" method="post" class="float-right">
                                             @csrf
                                             @method('DELETE')

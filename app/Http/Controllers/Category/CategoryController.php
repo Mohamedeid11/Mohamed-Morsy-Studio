@@ -58,6 +58,7 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
         $sessions = $category->sessions()->paginate(5);
+
         return view('Category.show' ,compact('categories','category' ,'sessions'));
     }
 

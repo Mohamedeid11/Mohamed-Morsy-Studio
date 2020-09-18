@@ -69,31 +69,6 @@
     });
     //End of Delete Category
 
-    //Delete Session
-    // $('#deletesession').on('show.bs.modal', function (event) {
-    //     var button = $(event.relatedTarget);
-    //     var Sid = button.data('sessionid');
-    //     var modal = $(this);
-    //
-    //     modal.find('.modal-body #Sid').val(Sid)
-    // });
-    //End of Delete Session
-
-    //Edit Session
-    $('#editC').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var Sname = button.data('sessionname');
-        var category = button.data('category');
-        var Sid = button.data('sessionid');
-        var modal = $(this);
-
-        modal.find('.modal-body #Sname').val(Sname);
-        modal.find('.modal-body #category').val(category);
-        modal.find('.modal-body #cat_id').val(Sid)
-    });
-
-    //End of Edit Session
-
     //Delete Event
     $('#deleteEvent').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);

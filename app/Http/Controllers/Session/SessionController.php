@@ -94,9 +94,21 @@ class SessionController extends Controller
     public function show(Session $session)
     {
         $categories = Category::all();
-        $images = Gallery::all();
+        $images = $session->galleries()->get();
 
-        return view('Session.Gallery' , compact('session' , 'categories' , 'images'));
+        return view('Session.Gallery' ,compact('session'  , 'categories' ,'images'));
+    }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Session  $session
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Session $session)
+    {
+        $categories = Category::all();
+
+        return view('Session.edit' , compact('session' , 'categories'));
     }
 
     /**
@@ -108,6 +120,7 @@ class SessionController extends Controller
      */
     public function update(Request $request , Session $session)
     {
+
         if (! is_dir(public_path('/Images/' . $request->Sname))) {
             mkdir(public_path('/Images/' . $request->Sname ) , 0777);
         }
@@ -120,6 +133,8 @@ class SessionController extends Controller
             $imageName ='Cover'. time() . '.' . $image->getClientOriginalExtension();
             Image::make($image)->resize(1500, 2000)->save(public_path('/Images/' .$request->Sname . '/'. $imageName));
 
+        }else {
+            $imageName = $session->Simage;
         }
 
         $session->Sname = $request->input('Sname');
@@ -127,7 +142,7 @@ class SessionController extends Controller
         $session->Simage = $imageName;
         $session->update();
 
-        return back()->with('success' , 'The Session Has Updated Successfully !!');
+        return redirect(route('session.index'))->with('success' , 'The Session Has Updated Successfully !!');
     }
 
     /**

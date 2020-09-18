@@ -13,15 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function () {
-//    return view('Home.index');
-//});
+
 
 Auth::routes();
-
-Route::get('/', 'PageController@index');
-
-Route::get('/{session}' ,'Pagecontroller@show')->name('page.show');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -30,7 +24,7 @@ Route::namespace('Category')->group(function (){
 });
 
 Route::namespace('Session')->group(function (){
-    Route::resource('/session' , 'SessionController' ,  ['except' =>['edit']]);
+    Route::resource('/session' , 'SessionController');
     Route::get('/session/{session}/Gallery/{image}' , 'SessionController@delete')->name('session.delete');
 });
 
@@ -45,3 +39,7 @@ Route::namespace('Event')->group(function () {
 Route::namespace('MainGallery')->group(function(){
     Route::resource('mainGallery' , 'MainGalleryController', ['except' =>['create' ,'edit' , 'show' , 'update']]);
 });
+
+Route::get('/', 'PageController@index');
+
+Route::get('/{session}' ,'Pagecontroller@show')->name('page.show');

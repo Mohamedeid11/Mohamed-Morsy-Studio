@@ -7,7 +7,7 @@
         <div class="row justify-content-center m-2 p-2">
             <div class="col-8">
                 <div class="card-box">
-                    <h4 class="m-t-0 header-title card-header bg-primary"> Upload A New Event </h4>
+                    <h4 class="m-t-0 header-title card-header bg-primary"> Edit Event </h4>
                     <div class="row">
                         <div class="col-12">
                             <div class="p-2">
